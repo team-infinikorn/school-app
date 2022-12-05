@@ -1,0 +1,46 @@
+require:
+  - rubocop-rails
+AllCops:
+  NewCops: disable
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
+    - 'storage/**/*'
+    - '.git/**/*'
+    - 'db/schema.rb'
+    - 'db/data_schema.rb'
+    - 'test/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'routes/**/*.rb'
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'
+Layout/LineLength:
+  Max: 120
+  IgnoredPatterns:
+    - 'key = '
+    - 'pepper = '
+Metrics/MethodLength:
+  CountAsOne: ['array',  'hash']
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Rails/SkipsModelValidations:
+  AllowedMethods: ['touch']
