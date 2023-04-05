@@ -6,7 +6,7 @@ class Invitation < ApplicationRecord
   validates_format_of :email, with: Devise::email_regexp, if: :is_email?
 
   before_validation :set_unique_key
-  after_update :set_expired_at
+  before_update :set_expired_at
 
   private
 

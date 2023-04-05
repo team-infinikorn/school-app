@@ -1,67 +1,83 @@
 <%= form_for @student, class: 'form submit-form' do |f| %>
   <div class="card-body p-md-4 p-2" data-controller="select2">
     <%= hidden_field_tag :token, {}, value: params[:token], class: 'form-control' %>
-    <div class="row">
-      <hr>
-      <div class="col-sm-6 mb-3">
-        <div class="form-group">
-          <%= f.label :first_name, class: 'd-block' %>
-          <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
-          <span class="text-error"><%= @student.errors[:first_name].to_sentence %></span>
+    <div class="img-thumbnail rounded-lg p-3 mb-3">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>Basic Information</h4>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <div class="form-group">
+            <%= f.label :first_name, class: 'd-block' %>
+            <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
+            <span class="text-error"><%= @student.errors[:first_name].to_sentence %></span>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :email, class: 'd-block' %>
+            <%= f.text_field :email, value: @invitation.present? ? @invitation.email : '', readonly: true, placeholder: 'Enter email', class: 'form-control' %>
+            <span class="text-error"><%= @student.errors[:email].to_sentence %></span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :last_name, class: 'd-block' %>
+            <%= f.text_field :last_name, placeholder: 'Enter last name', class: 'form-control' %>
+            <span class="text-error"><%= @student.errors[:last_name].to_sentence %></span>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :dob, 'Date of Birth', class: 'd-block' %>
+            <%= f.date_field :dob, placeholder: 'Enter date of birth', class: 'form-control' %>
+            <span class="text-error"><%= @student.errors[:dob].to_sentence %></span>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group">
+            <%= f.label :address, class: 'd-block' %>
+            <%= f.text_area :address, placeholder: 'Enter address', class: 'form-control' %>
+            <span class="text-error"><%= @student.errors[:address].to_sentence %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="img-thumbnail rounded-lg p-3 mb-3">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>Emergency contact</h4>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :phone_no, class: 'd-block' %>
+            <%= f.text_field :phone_no, placeholder: 'Enter phone no', class: 'form-control' %>
+            <span class="text-error"><%= @student.errors[:phone_no].to_sentence %></span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :emergency_phone_no, class: 'd-block' %>
+            <%= f.text_field :emergency_phone_no, placeholder: 'Enter emergency contact', class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="img-thumbnail rounded-lg p-3 mb-3">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>Select Courses</h4>
         </div>
 
-        <div class="form-group">
-          <%= f.label :email, class: 'd-block' %>
-          <%= f.text_field :email, value: @invitation.email, readonly: true, placeholder: 'Enter email', class: 'form-control' %>
-          <span class="text-error"><%= @student.errors[:email].to_sentence %></span>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <%= f.label :last_name, class: 'd-block' %>
-          <%= f.text_field :last_name, placeholder: 'Enter last name', class: 'form-control' %>
-          <span class="text-error"><%= @student.errors[:last_name].to_sentence %></span>
+        <div class="col-sm-12">
+          <div class="form-group">
+            <%= select_tag "student[courses]", options_for_select(Course.all.map { |course| [course.name.titleize, course.id] }), include_blank: 'Select course', multiple: true, id: 'select-course-type', class: 'form-control' %>
+          </div>
         </div>
 
-        <div class="form-group">
-          <%= f.label :dob, 'Date of Birth', class: 'd-block' %>
-          <%= f.date_field :dob, placeholder: 'Enter date of birth', class: 'form-control' %>
-          <span class="text-error"><%= @student.errors[:dob].to_sentence %></span>
+        <div class="col-sm-10 mt-3">
+          <button class="btn btn-primary">Save</button>
         </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <%= f.label :phone_no, class: 'd-block' %>
-          <%= f.text_field :phone_no, placeholder: 'Enter phone no', class: 'form-control' %>
-          <span class="text-error"><%= @student.errors[:phone_no].to_sentence %></span>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <%= f.label :emergency_contact, class: 'd-block' %>
-          <%= f.text_field :emergency_contact, placeholder: 'Enter emergency contact', class: 'form-control' %>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="form-group">
-          <%= f.label :address, class: 'd-block' %>
-          <%= f.text_area :address, placeholder: 'Enter address', class: 'form-control' %>
-          <span class="text-error"><%= @student.errors[:address].to_sentence %></span>
-        </div>
-      </div>
-
-      <div class="col-sm-12">
-        <h2>Select Courses</h2>
-      </div>
-
-      <div class="col-sm-12">
-        <div class="form-group">
-          <%= select_tag "student[courses]", options_for_select(Course.all.map { |course| [course.name.titleize, course.id] }), include_blank: 'Select course', multiple: true, id: 'select-course-type', class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="col-sm-10 mt-3">
-        <button class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>

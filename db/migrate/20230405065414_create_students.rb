@@ -6,7 +6,7 @@ class CreateStudents < ActiveRecord::Migration[7.0]
       t.string :email
       t.datetime :dob
       t.string :phone_no
-      t.string :emergency_contact
+      t.string :emergency_phone_no
       t.text :address
 
       t.timestamps

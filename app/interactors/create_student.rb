@@ -24,6 +24,6 @@ class CreateStudent
   private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :email, :phone_no, :emergency_contact, :dob, :address)
+    params.require(:student).permit(:first_name, :last_name, :email, :phone_no, :emergency_phone_no, :dob, :address)
   end
 end
