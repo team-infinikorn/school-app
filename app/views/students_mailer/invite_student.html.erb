@@ -1,0 +1,27 @@
+<div style="text-align: left; padding:20px 23px 20px 23px">
+  <span
+    style="
+            font-family: 'Space Grotesk', 'Lucida Sans', Tahoma, sans-serif !important;
+            text-align: justify;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 46px;
+            color: #132a37;
+            -webkit-text-size-adjust: none;
+            display: block;
+            text-align: center;
+            margin: 25px;
+          ">
+  </span>
+  <div style="margin-top: 25px;">
+    <p>You are invited.</p>
+    <h5>Accept or reject the invitation using the links below.<h5>
+    <div style="display: flex;">
+      <p>
+        <%= link_to 'Accept Invitation', accept_invitations_url(unique_key: @invitation.unique_key), class: 'btn-sm btn-primary' %> |
+        <%= link_to 'Reject Invitation', reject_invitations_url(unique_key: @invitation.unique_key), class: 'btn-sm btn-danger' %>
+      </p>
+    </div>
+  </div>
+</div>

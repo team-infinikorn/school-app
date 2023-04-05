@@ -1,0 +1,74 @@
+<div class="bg-white mt-2 border-bottom">
+  <div class="content-header p-0">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Invited Students</h1>
+        </div>
+        <div class="col-sm-6 text-right">
+          <%= link_to new_invitation_path, class:" btn-primary btn-sm float-sm-right" do %>
+            Invite Student
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-body p-4 table-responsive">
+  <table class="table table-striped table-bordered rounded-2">
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @student_invitations.each do |invitation| %>
+        <tr>
+          <td><%= invitation.email %></td>
+          <td><%= invitation.status.to_s.titleize %></td>
+        </tr>
+      <% end %>
+    </body>
+  </table>
+</div>
+
+<div class="container-fluid border-bottom">
+  <div class="row mb-2">
+    <div class="col-sm-6">
+      <h1 class="m-0 text-dark">Submitted Students</h1>
+    </div>
+  </div>
+</div>
+
+<div class="card-body p-4 table-responsive">
+  <table class="table table-striped table-bordered rounded-2">
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col" class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.first_name %></td>
+          <td><%= student.last_name %></td>
+          <td><%= student.email %></td>
+          <td><%= student.dob %></td>
+          <td class="text-center">
+            <div class="d-flex w-100">
+              <%= link_to student_path(student), class: 'btn btn-xs' do %>
+                Show
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </body>
+  </table>
+</div>

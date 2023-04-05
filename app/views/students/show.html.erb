@@ -1,0 +1,59 @@
+<div class="bg-white mt-2 border-bottom px-4">
+  <div class="content-header p-0">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Student Detail</h1>
+        </div>
+        <div class="col-sm-6 text-right">
+          <%= link_to students_path, class:" btn-primary btn-sm float-sm-right mt-2" do %>
+            Back to Students
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content ">
+  <div class="mx-3 pt-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-9 my-auto">
+          <div class="row mt-4 my-auto">
+            <div class="col-md-6 col-sm-6 text-right"><p><strong>First Name:</strong><p></div>
+            <div class="col-md-6 col-sm-6"> <%= @student.first_name %></div>
+          </div>
+          <div class="row mt-4 my-auto">
+            <div class="col-md-6 col-sm-6 text-right"><p><strong>Last Name:</strong><p></div>
+            <div class="col-md-6 col-sm-6"> <%= @student.last_name %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6 text-right"><p><strong>Email:</strong><p></div>
+            <div class="col-md-6 col-sm-6"> <%= @student.email %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6 text-right"><p><strong>Date of Birth:</strong><p></div>
+            <div class="col-md-6 col-sm-6"> <%= @student.dob %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6 text-right"><p><strong>Phone Number:</strong><p></div>
+              <div class="col-md-6 col-sm-6"> <%= @student.phone_no %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6 text-right"><p><strong>Emergency Contact:</strong><p></div>
+            <div class="col-md-6 col-sm-6"> <%= @student.emergency_contact %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6 text-right"><p><strong>Address:</strong><p></div>
+            <div class="col-md-6 col-sm-6"> <%= @student.address %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6 text-right"><p><strong>Student Courses:</strong><p></div>
+            <div class="col-md-6 col-sm-6"> <%= student_selected_courses(@student) %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
