@@ -8,4 +8,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.first_or_create(email: 'admin@example.com', password: 'password')
+User.first_or_create(email: 'user@example.com', password: 'password')
+
+courses = [{name: 'oop'}, {name: 'database'}, {name: 'data_structure'}, {name: 'operating_system'}, {name: 'ruby_on_rails'}]
+Course.create!(courses)
