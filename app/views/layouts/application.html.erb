@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fdw</title>
+    <title>School Management</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,9 +11,12 @@
   </head>
 
   <body>
-    <div id="flash">
-      <%= render 'layouts/notice' %>
+    <div class="container">
+      <%= render 'layouts/navbar' %>
+      <div id="flash">
+        <%= render 'layouts/notice' %>
+      </div>
+      <%= yield %>
     </div>
-    <%= yield %>
   </body>
 </html>

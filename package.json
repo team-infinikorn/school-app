@@ -11,7 +11,8 @@
     "esbuild": "^0.15.18",
     "esbuild-rails": "^1.0.3",
     "jquery": "^3.6.0",
-    "sass": "^1.56.1"
+    "sass": "^1.56.1",
+    "select2": "^4.1.0-rc.0"
   },
   "scripts": {
     "build": "node esbuild.config.js",

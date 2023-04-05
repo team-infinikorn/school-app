@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, path: '', path_names: { sign_in: '/admin/sign_in', sign_out: 'admin/sing_out' }, controllers: {
-    sessions: 'users/sessions'
-  }
+  devise_for :users
 
-  namespace :admin do
-    resources :dashboard, only: %i[index]
+  root 'dashboard#index', as: :dashboard
+
+  resources :students, only: %i[index new create show]
+  resources :invitations, only: %i[new create] do
+    collection do
+      get :accept
+      get :reject
+    end
   end
 end
