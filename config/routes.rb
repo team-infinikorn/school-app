@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'dashboard#index', as: :dashboard
+  root 'students#index'
 
   resources :students, only: %i[index new create show]
   resources :invitations, only: %i[new create] do

@@ -13,10 +13,10 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @result = CreateStudent.call(params:)
-    @student = @result.student
+    @student = Student.new(student_params)
 
-    if @result.success?
+    if @student.save
+      @student.course_ids = params[:course_ids]
       redirect_to students_path, notice: 'Student has been created successfully.'
     else
       render :new, status: :unprocessable_entity
@@ -27,6 +27,10 @@ class StudentsController < ApplicationController
 
   private
 
+  def student_params
+    params.require(:student).permit(:first_name, :last_name, :email, :phone_number, :emergency_phone_number, :dob, :address)
+  end
+
   def set_student
     @student = Student.find(params[:id])
   end
@@ -36,6 +40,6 @@ class StudentsController < ApplicationController
   end
 
   def check_student_email
-    return redirect_to students_path, alert: 'Email does not match with invite email.' unless @invitation.email == params[:student][:email]
+    return redirect_to students_path, alert: 'Email does not match with invite email.' unless @invitation.email == student_params[:email]
   end
 end

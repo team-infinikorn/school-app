@@ -59,7 +59,7 @@
           <td><%= student.first_name %></td>
           <td><%= student.last_name %></td>
           <td><%= student.email %></td>
-          <td><%= student.dob %></td>
+          <td><%= student.dob.strftime('%d-%m-%Y') %></td>
           <td class="text-center">
             <div class="d-flex w-100">
               <%= link_to student_path(student), class: 'btn btn-xs' do %>

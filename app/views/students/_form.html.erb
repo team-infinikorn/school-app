@@ -45,19 +45,20 @@
     <div class="img-thumbnail rounded-lg p-3 mb-3">
       <div class="row">
         <div class="col-sm-12">
-          <h4>Emergency contact</h4>
+          <h4>Emergency contacts</h4>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <%= f.label :phone_no, class: 'd-block' %>
-            <%= f.text_field :phone_no, placeholder: 'Enter phone no', class: 'form-control' %>
-            <span class="text-error"><%= @student.errors[:phone_no].to_sentence %></span>
+            <%= f.label :phone_number, class: 'd-block' %>
+            <%= f.text_field :phone_number, placeholder: 'Enter phone number', class: 'form-control' %>
+            <span class="text-error"><%= @student.errors[:phone_number].to_sentence %></span>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <%= f.label :emergency_phone_no, class: 'd-block' %>
-            <%= f.text_field :emergency_phone_no, placeholder: 'Enter emergency contact', class: 'form-control' %>
+            <%= f.label :emergency_phone_number, class: 'd-block' %>
+            <%= f.text_field :emergency_phone_number, placeholder: 'Enter emergency contact', class: 'form-control' %>
+            <span class="text-error"><%= @student.errors[:emergency_phone_number].to_sentence %></span>
           </div>
         </div>
       </div>
@@ -71,7 +72,7 @@
 
         <div class="col-sm-12">
           <div class="form-group">
-            <%= select_tag "student[courses]", options_for_select(Course.all.map { |course| [course.name.titleize, course.id] }), include_blank: 'Select course', multiple: true, id: 'select-course-type', class: 'form-control' %>
+            <%= select_tag "course_ids", options_for_select(Course.all.map { |course| [course.name.titleize, course.id] }), include_blank: 'Select course', multiple: true, id: 'select-course-type', class: 'form-control' %>
           </div>
         </div>
 

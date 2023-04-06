@@ -43,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_092330) do
     t.string "last_name"
     t.string "email"
     t.datetime "dob"
-    t.string "phone_no"
-    t.string "emergency_phone_no"
+    t.string "phone_number"
+    t.string "emergency_phone_number"
     t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

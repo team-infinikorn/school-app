@@ -3,7 +3,7 @@ class Invitation < ApplicationRecord
   enum :status, STATUSES
 
   validates :email, :unique_key, presence: true
-  validates_format_of :email, with: Devise::email_regexp, if: :is_email?
+  validates_format_of :email, with: Devise::email_regexp
 
   before_validation :set_unique_key
   before_update :set_expired_at
@@ -11,14 +11,18 @@ class Invitation < ApplicationRecord
   private
 
   def set_unique_key
-    self.unique_key = SecureRandom.base64(12)
+    unique_key = nil
+    loop do
+      unique_key =  SecureRandom.base64(12)
+      break unique_key unless Invitation.find_by(unique_key: unique_key)
+    end
+
+    self.unique_key = unique_key
   end
 
   def set_expired_at
-    self.expired_at = Time.zone.now
-  end
+    return if self.expired_at.present?
 
-  def is_email?
-    email.present?
+    self.expired_at = Time.zone.now
   end
 end

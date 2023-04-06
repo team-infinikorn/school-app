@@ -34,15 +34,15 @@
           </div>
           <div class="row">
             <div class="col-md-6 col-sm-6 text-right"><p><strong>Date of Birth:</strong><p></div>
-            <div class="col-md-6 col-sm-6"> <%= @student.dob %></div>
+            <div class="col-md-6 col-sm-6"> <%= @student.dob.strftime('%d-%m-%Y') %></div>
           </div>
           <div class="row">
             <div class="col-md-6 col-sm-6 text-right"><p><strong>Phone Number:</strong><p></div>
-              <div class="col-md-6 col-sm-6"> <%= @student.phone_no %></div>
+              <div class="col-md-6 col-sm-6"> <%= @student.phone_number %></div>
           </div>
           <div class="row">
             <div class="col-md-6 col-sm-6 text-right"><p><strong>Emergency Contact:</strong><p></div>
-            <div class="col-md-6 col-sm-6"> <%= @student.emergency_phone_no %></div>
+            <div class="col-md-6 col-sm-6"> <%= @student.emergency_phone_number %></div>
           </div>
           <div class="row">
             <div class="col-md-6 col-sm-6 text-right"><p><strong>Address:</strong><p></div>
