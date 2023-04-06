@@ -5,7 +5,6 @@ class InvitationsController < ApplicationController
   def accept
     redirect_to new_student_path(token: @invitation.unique_key), notice: 'Invitation has been accepted.' if @invitation.accept!
   rescue StandardError => e
-    debugger
     redirect_to root_url, alert: 'Invitation has been expired'
   end
 
