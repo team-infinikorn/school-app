@@ -20,7 +20,8 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :email, :phone_number, :emergency_phone_number, :dob, :address, course_ids: [])
+    params.require(:student).permit(:first_name, :last_name, :email, :phone_number, :emergency_phone_number, :dob,
+      :address, course_ids: [])
   end
 
   def set_invitation
@@ -30,12 +31,13 @@ class StudentsController < ApplicationController
   def check_invitation
     return if @invitation.present?
 
-    return redirect_to root_path, alert: 'You are not eligible to submit this application!'
+    redirect_to root_path, alert: 'You are not eligible to submit this application!'
   end
 
   def check_student_email
     return if @invitation.email == student_params[:email]
 
-    return redirect_to students_path, alert: 'You are not allowed to submit this application! Please contact your admin.'
+    redirect_to students_path,
+      alert: 'You are not allowed to submit this application! Please contact your admin.'
   end
 end
