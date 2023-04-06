@@ -4,8 +4,6 @@ class StudentsController < ApplicationController
   before_action :check_student_email, only: [:create]
 
   def new
-    # TODO: We can restrct admin/user to reach to this screen, as this only belongs to student
-    # Happy to create 2 namespaces, 1 for admin and other for students
     @student = Student.new
   end
 
