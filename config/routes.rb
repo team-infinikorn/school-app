@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'dashboard#index'
+  root to: 'admin/students#index'
 
   devise_for :users, path: '', path_names: { sign_in: '/admin/sign_in', sign_out: 'admin/sign_out' }, controllers: {
     sessions: 'users/sessions'
@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root to: 'students#index'
-
     resources :students, only: %i[index show]
     resources :invitations, only: %i[new create]
   end
