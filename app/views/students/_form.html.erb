@@ -72,7 +72,7 @@
 
         <div class="col-sm-12">
           <div class="form-group">
-            <%= select_tag "course_ids", options_for_select(Course.all.map { |course| [course.name.titleize, course.id] }), include_blank: 'Select course', multiple: true, id: 'select-course-type', class: 'form-control' %>
+            <%= select_tag "student[course_ids]", options_for_select(Course.all.map { |course| [course.name.titleize, course.id] }), include_blank: 'Select course', multiple: true, id: 'select-course-type', class: 'form-control' %>
           </div>
         </div>
 

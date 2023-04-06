@@ -1,12 +1,24 @@
 class Invitation < ApplicationRecord
-  STATUSES = {accepted: 'accepted', rejected: 'rejected'}
+  STATUSES = {
+    accepted: 'accepted',
+    rejected: 'rejected'
+  }
   enum :status, STATUSES
 
-  validates :email, :unique_key, presence: true
-  validates_format_of :email, with: Devise::email_regexp
+  validates :email, presence: true, format: { with: Devise::email_regexp }
+  validates :unique_key, presence: true
 
   before_validation :set_unique_key
-  before_update :set_expired_at
+
+  def accept!
+    self.expired_at = Time.zone.now
+    self.accepted!
+  end
+
+  def reject!
+    self.expired_at = Time.zone.now
+    self.rejected!
+  end
 
   private
 
@@ -18,11 +30,5 @@ class Invitation < ApplicationRecord
     end
 
     self.unique_key = unique_key
-  end
-
-  def set_expired_at
-    return if self.expired_at.present?
-
-    self.expired_at = Time.zone.now
   end
 end

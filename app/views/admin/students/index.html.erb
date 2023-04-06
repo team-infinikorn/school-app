@@ -6,7 +6,7 @@
           <h1 class="m-0 text-dark">Invited Students</h1>
         </div>
         <div class="col-sm-6 text-right">
-          <%= link_to new_invitation_path, class:" btn-primary btn-sm float-sm-right" do %>
+          <%= link_to new_admin_invitation_path, class:" btn-primary btn-sm float-sm-right" do %>
             Invite Student
           <% end %>
         </div>
@@ -62,7 +62,7 @@
           <td><%= student.dob.strftime('%d-%m-%Y') %></td>
           <td class="text-center">
             <div class="d-flex w-100">
-              <%= link_to student_path(student), class: 'btn btn-xs' do %>
+              <%= link_to admin_student_path(student), class: 'btn btn-xs' do %>
                 Show
               <% end %>
             </div>

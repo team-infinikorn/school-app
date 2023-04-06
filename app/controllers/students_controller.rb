@@ -1,14 +1,11 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: :show
-  before_action :set_invitation, only: [:new, :create]
-  before_action :check_student_email, only: :create
-
-  def index
-    @students = Student.order(created_at: :desc)
-    @student_invitations = Invitation.order(created_at: :desc)
-  end
+  before_action :set_invitation
+  before_action :check_invitation, only: [:new]
+  before_action :check_student_email, only: [:create]
 
   def new
+    # TODO: We can restrct admin/user to reach to this screen, as this only belongs to student
+    # Happy to create 2 namespaces, 1 for admin and other for students
     @student = Student.new
   end
 
@@ -16,30 +13,31 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     if @student.save
-      @student.course_ids = params[:course_ids]
-      redirect_to students_path, notice: 'Student has been created successfully.'
+      redirect_to root_path, notice: 'Student has been created successfully.'
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def show; end
-
   private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :email, :phone_number, :emergency_phone_number, :dob, :address)
-  end
-
-  def set_student
-    @student = Student.find(params[:id])
+    params.require(:student).permit(:first_name, :last_name, :email, :phone_number, :emergency_phone_number, :dob, :address, course_ids: [])
   end
 
   def set_invitation
     @invitation = Invitation.find_by(unique_key: params[:token])
   end
 
+  def check_invitation
+    return if @invitation.present?
+
+    return redirect_to root_path, alert: 'You are not eligible to submit this application!'
+  end
+
   def check_student_email
-    return redirect_to students_path, alert: 'Email does not match with invite email.' unless @invitation.email == student_params[:email]
+    return if @invitation.email == student_params[:email]
+
+    return redirect_to students_path, alert: 'You are not allowed to submit this application! Please contact your admin.'
   end
 end
