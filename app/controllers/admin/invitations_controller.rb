@@ -9,7 +9,7 @@ module Admin
 
       if @invitation.save
         StudentsMailer.invite_student(@invitation).deliver_now
-        redirect_to students_path, notice: 'Invitation has been sent successfully.'
+        redirect_to admin_students_path, notice: 'Invitation has been sent successfully.'
       else
         render :new, status: :unprocessable_entity
       end

@@ -9,7 +9,7 @@ class InvitationsController < ApplicationController
   end
 
   def reject
-    redirect_to students_path, notice: 'Invitation has been rejected.' if @invitation.reject!
+    redirect_to root_url, notice: 'Invitation has been rejected.' if @invitation.reject!
   rescue StandardError => e
     redirect_to root_url, alert: 'Invitation has been expired'
   end
